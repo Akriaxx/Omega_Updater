@@ -18,4 +18,4 @@ Notes de securite :
 
 Runtime requis :
 - Microsoft .NET 10 Desktop Runtime x64.
-- Lien officiel : https://dotnet.microsoft.com/download/dotnet/10.0/runtime?cid=getdotnetcore&runtime=windowsdesktop&arch=x64
+- Lien officiel : https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-10.0.7-windows-x64-installer
