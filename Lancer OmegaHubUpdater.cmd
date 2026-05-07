@@ -3,7 +3,7 @@ setlocal
 
 set "APP_DIR=%~dp0"
 set "APP_EXE=%APP_DIR%OmegaHubUpdater.exe"
-set "DOTNET_DOWNLOAD=https://dotnet.microsoft.com/download/dotnet/10.0/runtime?cid=getdotnetcore&runtime=windowsdesktop&arch=x64"
+set "DOTNET_DOWNLOAD=https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-10.0.7-windows-x64-installer"
 
 where dotnet >nul 2>nul
 if errorlevel 1 goto MissingRuntime
