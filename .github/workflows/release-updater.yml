@@ -1,0 +1,52 @@
+name: Release Omega Hub Updater
+
+on:
+  push:
+    tags:
+      - "updater-v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    name: Package portable updater
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          mkdir -p dist/OmegaHubUpdater
+
+          rsync -a \
+            --exclude ".git" \
+            --exclude ".github" \
+            --exclude "dist" \
+            --exclude "*.zip" \
+            ./ dist/OmegaHubUpdater/
+
+          cd dist
+          zip -r OmegaHubUpdater.zip OmegaHubUpdater
+
+      - name: Create or update GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG_NAME: ${{ github.ref_name }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if gh release view "$TAG_NAME" >/dev/null 2>&1; then
+            gh release upload "$TAG_NAME" dist/OmegaHubUpdater.zip --clobber
+          else
+            gh release create "$TAG_NAME" dist/OmegaHubUpdater.zip \
+              --title "Omega Hub Updater $TAG_NAME" \
+              --notes "Release $TAG_NAME"
+          fi
