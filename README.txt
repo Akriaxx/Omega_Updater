@@ -1,21 +1,18 @@
-Omega Hub Updater
-=================
+AKRX - Addon Manager
+===================
 
-Cet outil met a jour l'addon World of Warcraft Omega_Hub depuis la derniere release publique GitHub.
+Lancez "Lancer AKRX - Addon Manager.cmd" ou "AKRX - Addon Manager.exe".
+Runtime requis : Microsoft .NET 10 Desktop Runtime x64.
 
-Utilisation :
-1. Lancez "Lancer OmegaHubUpdater.cmd".
-   Ce launcher verifie que .NET 10 Desktop Runtime x64 est installe.
-   Si le runtime manque, il ouvre la page officielle Microsoft.
-2. Selectionnez le dossier Omega_Hub de votre installation WoW.
-   Exemple : World of Warcraft\_retail_\Interface\AddOns\Omega_Hub
-3. Cliquez sur Verifier, Mettre a jour ou Reparer.
+1. Selectionnez le dossier Interface\AddOns de votre jeu.
+2. Ajoutez vos addons par URL de depot GitHub public.
+3. Cliquez sur Tout verifier, puis installez ou mettez a jour vos addons.
 
-Notes de securite :
-- L'outil ne demande aucun mot de passe ni token GitHub.
-- Le chemin selectionne est sauvegarde dans %AppData%\OmegaHubUpdater\settings.json.
-- Les fichiers sont telecharges depuis la release publique GitHub Akriaxx/AKX_Omega_Hub.
+Un addon par ZIP attache a une release stable publique.
+Omega Hub est propose comme source par defaut.
+Les preferences existantes sont conservees dans
+%APPDATA%\OmegaHubUpdater\settings.json.
 
-Runtime requis :
-- Microsoft .NET 10 Desktop Runtime x64.
-- Lien officiel : https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-10.0.7-windows-x64-installer
+Le lanceur verifie .NET 10 Desktop Runtime x64 et ouvre la page
+officielle Microsoft si ce composant manque.
+https://dotnet.microsoft.com/download/dotnet/10.0/runtime?cid=getdotnetcore&runtime=windowsdesktop&arch=x64

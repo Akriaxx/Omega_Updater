@@ -1,0 +1,24 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0/win-x64",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {},
+    ".NETCoreApp,Version=v10.0/win-x64": {
+      "AKRX - Addon Manager/2.0.0": {
+        "runtime": {
+          "AKRX - Addon Manager.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "AKRX - Addon Manager/2.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

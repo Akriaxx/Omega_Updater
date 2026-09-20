@@ -1,4 +1,4 @@
-name: Release Omega Hub Updater
+name: Release AKRX - Addon Manager
 
 on:
   push:
@@ -26,23 +26,29 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag_name || github.event.release.tag_name || github.ref }}
 
       - name: Resolve release tag
         id: release_tag
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_TAG: ${{ inputs.tag_name }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
         shell: bash
         run: |
           set -euo pipefail
 
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            tag_name="${{ inputs.tag_name }}"
-          elif [ "${{ github.event_name }}" = "release" ]; then
-            tag_name="${{ github.event.release.tag_name }}"
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            tag_name="$INPUT_TAG"
+          elif [ "$EVENT_NAME" = "release" ]; then
+            tag_name="$RELEASE_TAG"
           else
             tag_name="${GITHUB_REF_NAME}"
           fi
 
-          if [ -z "$tag_name" ]; then
-            echo "Release tag is empty" >&2
+          if [[ ! "$tag_name" =~ ^(updater-)?v[0-9]+\.[0-9]+\.[0-9]+([.-][A-Za-z0-9.-]+)?$ ]]; then
+            echo "Invalid release tag" >&2
             exit 1
           fi
 
@@ -53,17 +59,24 @@ jobs:
         run: |
           set -euo pipefail
 
-          mkdir -p dist/OmegaHubUpdater
+          mkdir -p dist/AKRX-Addon-Manager
 
-          rsync -a \
-            --exclude ".git" \
-            --exclude ".github" \
-            --exclude "dist" \
-            --exclude "*.zip" \
-            ./ dist/OmegaHubUpdater/
+          # Package only the player build, never source files or old executables.
+          files=(
+            "AKRX - Addon Manager.exe"
+            "AKRX - Addon Manager.dll"
+            "AKRX - Addon Manager.deps.json"
+            "AKRX - Addon Manager.runtimeconfig.json"
+            "Lancer AKRX - Addon Manager.cmd"
+            "README.txt"
+          )
+          for file in "${files[@]}"; do
+            test -f "$file"
+            cp -- "$file" dist/AKRX-Addon-Manager/
+          done
 
           cd dist
-          zip -r OmegaHubUpdater.zip OmegaHubUpdater
+          zip -r AKRX-Addon-Manager.zip AKRX-Addon-Manager
 
       - name: Create or update GitHub release
         env:
@@ -74,9 +87,9 @@ jobs:
           set -euo pipefail
 
           if gh release view "$TAG_NAME" >/dev/null 2>&1; then
-            gh release upload "$TAG_NAME" dist/OmegaHubUpdater.zip --clobber
+            gh release upload "$TAG_NAME" dist/AKRX-Addon-Manager.zip --clobber
           else
-            gh release create "$TAG_NAME" dist/OmegaHubUpdater.zip \
-              --title "Omega Hub Updater $TAG_NAME" \
-              --notes "Release $TAG_NAME"
+            gh release create "$TAG_NAME" dist/AKRX-Addon-Manager.zip \
+              --title "AKRX - Addon Manager $TAG_NAME" \
+              --notes "Interface AKRX avec fond illustre, bibliotheque multi-addons GitHub, mises a jour groupees, reparation et sauvegardes. Telechargez AKRX-Addon-Manager.zip, extrayez-le et lancez le fichier CMD : il verifie .NET 10 Desktop Runtime x64."
           fi
