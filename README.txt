@@ -1,18 +1,19 @@
 AKRX - Addon Manager
 ===================
 
-Lancez "Lancer AKRX - Addon Manager.cmd" ou "AKRX - Addon Manager.exe".
-Runtime requis : Microsoft .NET 10 Desktop Runtime x64.
+Installation : ouvrez la derniere release (onglet Releases), telechargez
+AKRX.AddonManager-win.msi et lancez-le. Pas besoin de droits administrateur.
+Raccourcis Bureau et menu Demarrer, desinstallation depuis Parametres > Applications.
+L'application se met ensuite a jour toute seule.
+
+Si Windows affiche "Windows a protege votre ordinateur" : cliquez sur
+"Informations complementaires", puis "Executer quand meme".
 
 1. Selectionnez le dossier Interface\AddOns de votre jeu.
-2. Ajoutez vos addons par URL de depot GitHub public.
-3. Cliquez sur Tout verifier, puis installez ou mettez a jour vos addons.
+2. Ajoutez vos addons, patchs et packs par URL de depot GitHub public.
+3. Cliquez sur Tout verifier, puis installez ou mettez a jour.
 
-Un addon par ZIP attache a une release stable publique.
-Omega Hub est propose comme source par defaut.
-Les preferences existantes sont conservees dans
-%APPDATA%\OmegaHubUpdater\settings.json.
+Les preferences sont conservees dans %APPDATA%\OmegaHubUpdater\settings.json.
 
-Le lanceur verifie .NET 10 Desktop Runtime x64 et ouvre la page
-officielle Microsoft si ce composant manque.
-https://dotnet.microsoft.com/download/dotnet/10.0/runtime?cid=getdotnetcore&runtime=windowsdesktop&arch=x64
+Ne supprimez pas les anciennes releases : l'application s'en sert pour ses mises a jour.
+Les fichiers a la racine de ce depot sont l'ancienne version 2.0.0 (zip).
