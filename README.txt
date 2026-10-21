@@ -1,4 +1,4 @@
-AKRX - Addon Manager
+AKRX World Manager
 ===================
 
 Installation : ouvrez la derniere release (onglet Releases), telechargez

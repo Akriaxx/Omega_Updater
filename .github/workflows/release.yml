@@ -1,4 +1,4 @@
-name: Release AKRX - Addon Manager
+name: Release AKRX World Manager
 
 # Pousser un tag vX.Y.Z publie la release a partir des fichiers deja construits dans releases/<tag>/
 # (installateur .msi, paquet Velopack, portable, flux de mise a jour). Le code source n'est pas dans ce depot.
@@ -30,5 +30,5 @@ jobs:
           if gh release view "$TAG" >/dev/null 2>&1; then
             gh release upload "$TAG" "${files[@]}" --clobber
           else
-            gh release create "$TAG" "${files[@]}" --title "AKRX - Addon Manager $TAG" --notes-file "$dir/notes.md" --latest
+            gh release create "$TAG" "${files[@]}" --title "AKRX World Manager $TAG" --notes-file "$dir/notes.md" --latest
           fi
